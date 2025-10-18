@@ -1,33 +1,17 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Mail,
-  Linkedin,
-  ChevronDown,
-  ChevronUp,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import { Mail, Linkedin, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
+import Link from "next/link";
 
 const PROFILE = {
   name: "Pooja K Kini",
   tagline: "Researcher | Gender & Climate Justice | Urban Water | Monitoring & Evaluation",
-  description:
-    `Hello! I am a PhD candidate at Birkbeck, University of London (2022–2026), specialising in Geography, Environment, and Development Studies. My research—supported by the Mark James Studentship—centres on the intersectional and intergenerational gendered experiences of climate change in urban India, with a specific focus on water practices. I explore how everyday water-related decisions and struggles in cities like Jaipur reflect and (re) produce social-spatial inequalities and the accelerating impacts of climate change in informal settlements.
-
-​
-
-My academic work builds on over eight years of experience as a researcher and monitoring and evaluation (M&E) specialist across India and the UK. My core competencies lie in strategic planning, evaluation design, logframe and theory of change development, and mixed-method research. 
-
-​
-
-Through my doctoral studies, I am expanding my methodological and conceptual grounding in environmental and gender research, while continuing to engage with broader questions of social justice and development. I welcome opportunities to collaborate with scholars and practitioners in related fields and am also happy to speak with those interested in pursuing research or evaluation work in the UK.​`,
-  email: "pooja@example.com", // replace
-  linkedIn: "https://www.linkedin.com/in/yourhandle/", // replace
+  shortDescription: `I am a PhD candidate at Birkbeck, University of London, specialising in Geography, Environment, and Development Studies. My research explores the intersection of gender, urban water practices, and climate justice, in urban India. I am currently a Guest Teacher at London School of Economics (LSE) and a Postgraduate Teaching Assistant at University College London (UCL). `,
+  email: "poojak.kini@gmail.com",
+  linkedIn: "https://www.linkedin.com/in/pooja-k-369452b9/",
   headshot: "/images/headshot.jpg",
 };
 
@@ -47,8 +31,7 @@ const GALLERY = [
 ];
 
 export default function HomePage() {
-  const [showFull, setShowFull] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = React.useState(0);
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     slideChanged(s) {
@@ -56,29 +39,10 @@ export default function HomePage() {
     },
   });
 
-  const shortDescription = PROFILE.description.slice(0, 140) + "...";
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100 scroll-smooth">
-      {/* NAVBAR */}
-      <header className="w-full border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm sticky top-0 z-50">
-        <nav className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-          <span className="font-bold text-lg">{PROFILE.name}</span>
-          <div className="flex gap-6 text-sm font-medium">
-            <a href="#intro" className="hover:text-blue-600">Home</a>
-            <a href="/resume" className="hover:text-blue-600">Resume</a>
-            <a href="/projects" className="hover:text-blue-600">Projects</a>
-            <a href="/publications" className="hover:text-blue-600">Publications</a>
-            <a href="#gallery" className="hover:text-blue-600">Gallery</a>
-          </div>
-        </nav>
-      </header>
-
+    <main className="max-w-5xl mx-auto px-4 py-20 scroll-smooth">
       {/* INTRO SECTION */}
-      <section
-        id="intro"
-        className="max-w-5xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-10 items-center"
-      >
+      <section id="intro" className="grid md:grid-cols-2 gap-10 items-center">
         {/* Text */}
         <div>
           <motion.h1
@@ -98,38 +62,12 @@ export default function HomePage() {
             {PROFILE.tagline}
           </motion.p>
 
-          {/* Expandable description */}
-          <div className="mt-4 text-base md:text-lg text-neutral-700 dark:text-neutral-400 leading-relaxed">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={showFull ? "full" : "short"}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
-              >
-                {showFull ? PROFILE.description : shortDescription}
-              </motion.p>
-            </AnimatePresence>
+          <p className="mt-4 text-base md:text-lg text-neutral-700 dark:text-neutral-400 leading-relaxed">
+            {PROFILE.shortDescription}
+          </p>
 
-            <button
-              onClick={() => setShowFull(!showFull)}
-              className="mt-2 inline-flex items-center text-blue-600 hover:underline text-sm"
-            >
-              {showFull ? (
-                <>
-                  Show less <ChevronUp className="w-4 h-4 ml-1" />
-                </>
-              ) : (
-                <>
-                  Read more <ChevronDown className="w-4 h-4 ml-1" />
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* Links */}
-          <div className="mt-6 flex gap-3">
+          {/* Buttons */}
+          <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={PROFILE.linkedIn}
               target="_blank"
@@ -139,19 +77,17 @@ export default function HomePage() {
               <Linkedin className="w-4 h-4" /> LinkedIn
             </a>
             <a
-              href={`mailto:${PROFILE.email}?subject=Hello%20${encodeURIComponent(
-                PROFILE.name
-              )}`}
+              href={`mailto:${PROFILE.email}?subject=Hello%20${encodeURIComponent(PROFILE.name)}`}
               className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold border border-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800"
             >
               <Mail className="w-4 h-4" /> Email
             </a>
-            <a
-              href="#gallery"
+            <Link
+              href="/bio"
               className="inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-500"
             >
-              See Gallery <ArrowRight className="w-4 h-4" />
-            </a>
+              Profile <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
 
@@ -168,7 +104,7 @@ export default function HomePage() {
       </section>
 
       {/* GALLERY SECTION */}
-      <section id="gallery" className="max-w-5xl mx-auto px-4 py-20">
+      <section id="gallery" className="mt-20">
         <h2 className="text-2xl font-bold mb-6">Photo Gallery</h2>
         <div className="relative">
           <div ref={sliderRef} className="keen-slider rounded-2xl overflow-hidden shadow-lg">
@@ -216,6 +152,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
