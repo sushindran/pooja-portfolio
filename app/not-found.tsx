@@ -42,7 +42,7 @@ export default function NotFound() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-2xl md:text-3xl font-bold mb-4 text-neutral-900 dark:text-neutral-100"
           >
-            Oops! You've Discovered a Creative Detour
+            Oops! You&apos;ve Discovered a Creative Detour
           </motion.h2>
 
           <motion.p
@@ -51,8 +51,8 @@ export default function NotFound() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-lg text-neutral-600 dark:text-neutral-400 mb-8 max-w-2xl mx-auto"
           >
-            This page doesn't exist, but you've found a piece of Pooja's creative world. 
-            While you're here, enjoy this abstract artwork before heading back!
+            This page doesn&apos;t exist, but you&apos;ve found a piece of Pooja&apos;s creative world. 
+            While you&apos;re here, enjoy this abstract artwork before heading back!
           </motion.p>
 
           <motion.div

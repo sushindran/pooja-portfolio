@@ -196,7 +196,18 @@ const SKILLS = [
 ];
 
 interface TimelineItemProps {
-  item: any;
+  item: {
+    id: number;
+    title?: string;
+    degree?: string;
+    organization?: string;
+    institution?: string;
+    location?: string;
+    period: string;
+    type?: string;
+    description?: string[];
+    note?: string;
+  };
   index: number;
   isLeft: boolean;
 }
@@ -218,10 +229,10 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
           <div className="flex items-start justify-between gap-4 mb-3">
             <div className={isLeft ? 'text-right' : 'text-left'}>
               <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
-                {item.title}
+                {item.title || item.degree}
               </h3>
               <p className="text-blue-600 dark:text-blue-400 font-semibold">
-                {item.organization}
+                {item.organization || item.institution}
               </p>
               {item.location && (
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">
