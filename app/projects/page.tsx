@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const PROJECTS = [
     {
@@ -56,7 +57,7 @@ const PROJECTS = [
 
 export default function ProjectsPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-white to-neutral-50 dark:from-neutral-950 dark:to-neutral-900 text-neutral-900 dark:text-neutral-100">
+        <div className="min-h-screen bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100">
             {/* PAGE HEADER */}
             <header className="max-w-5xl mx-auto px-4 py-16 text-center">
                 <motion.h1
@@ -76,15 +77,26 @@ export default function ProjectsPage() {
             {/* PROJECT GRID */}
             <section className="max-w-6xl mx-auto px-4 pb-20 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {PROJECTS.map((project, index) => (
-                    <div key={index} className="flip-card h-64">
+                    <motion.div
+                        key={index}
+                        className="flip-card h-64"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-80px" }}
+                        transition={{ duration: 0.5, delay: index * 0.05 }}
+                        whileHover={{ y: -4 }}
+                    >
                         <div className="flip-card-inner">
                             {/* FRONT */}
                             <div className="flip-card-front overflow-hidden">
                                 <div className="relative w-full h-full flex flex-col justify-end bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl shadow-lg">
-                                    <img
+                                    <Image
                                         src={project.image}
                                         alt={project.title}
-                                        className="absolute inset-0 w-full h-full object-cover"
+                                        fill
+                                        priority={index < 2}
+                                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                        className="object-cover"
                                     />
                                     <div className="relative z-10 bg-white/90 dark:bg-neutral-900/90 backdrop-blur-sm p-3">
                                         <h3 className="text-base font-semibold text-neutral-800 dark:text-neutral-100">
@@ -111,7 +123,7 @@ export default function ProjectsPage() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </section>
         </div>

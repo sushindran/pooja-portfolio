@@ -14,15 +14,22 @@ export default function Navbar() {
     }`;
 
   return (
-    <header className="w-full border-b border-neutral-200 dark:border-neutral-800 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm sticky top-0 z-50">
-      <nav className="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
-        <span className="font-bold text-lg tracking-tight">Pooja K Kini</span>
-        <div className="flex gap-6 text-sm font-medium">
-          <Link href="/" className={linkClass("/")}>Home</Link>
-          <Link href="/bio" className={linkClass("/bio")}>Bio & Resume</Link>
-          <Link href="/projects" className={linkClass("/projects")}>Projects</Link>
-          <Link href="/publications" className={linkClass("/publications")}>Publications</Link>
-          <a href="#gallery" className="hover:text-blue-600">Gallery</a>
+    <header className="w-full border-b border-neutral-200 dark:border-neutral-800 bg-white/90 dark:bg-neutral-950/90 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+      <nav className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <span className="font-bold text-xl tracking-tight">Pooja K Kini</span>
+        <div className="flex gap-8 text-sm font-medium">
+          <Link href="/" className={linkClass("/")}>
+            Home
+          </Link>
+          <Link href="/bio" className={linkClass("/bio")}>
+            Profile
+          </Link>
+          <Link href="/projects" className={linkClass("/projects")}>
+            Projects
+          </Link>
+          <Link href="/publications" className={linkClass("/publications")}>
+            Publications
+          </Link>
         </div>
       </nav>
     </header>
