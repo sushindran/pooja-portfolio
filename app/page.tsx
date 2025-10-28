@@ -74,6 +74,14 @@ export default function HomePage() {
           0%, 100% { opacity: 0.2; }
           50% { opacity: 0.3; }
         }
+        @keyframes starfish-wink {
+          0%, 90%, 100% { transform: scale(1) rotate(0deg); }
+          95% { transform: scale(0.95) rotate(-5deg); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
         .animate-wave { 
           animation: wave 8s ease-in-out infinite;
           will-change: transform;
@@ -89,6 +97,12 @@ export default function HomePage() {
         .animate-pulse-subtle {
           animation: pulse-subtle 4s ease-in-out infinite;
         }
+        .animate-starfish-wink {
+          animation: starfish-wink 4s ease-in-out infinite;
+        }
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
+        }
       `}</style>
 
       {/* HERO SECTION with water-themed background */}
@@ -96,14 +110,35 @@ export default function HomePage() {
         id="intro"
         className="relative overflow-hidden min-h-[90vh] flex items-center"
       >
-        {/* Animated Water Background - Optimized */}
+        {/* Animated Water Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950 dark:via-cyan-950 dark:to-blue-900">
-          {/* Reduced number of ripple effects and optimized */}
           <div className="absolute top-20 left-20 w-64 h-64 bg-blue-200/20 dark:bg-blue-400/10 rounded-full blur-3xl animate-ripple"></div>
           <div className="absolute bottom-40 right-20 w-96 h-96 bg-cyan-200/20 dark:bg-cyan-400/10 rounded-full blur-3xl animate-ripple" style={{ animationDelay: '2s' }}></div>
         </div>
 
-        {/* Animated Wave SVG - Bottom - Optimized */}
+        {/* Animated Starfish Easter Egg */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="absolute top-20 right-32 w-16 h-16 opacity-40 hover:opacity-80 transition-opacity duration-300 cursor-pointer animate-float"
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full animate-starfish-wink">
+            <path
+              d="M50 10 L60 35 L85 35 L65 50 L75 75 L50 60 L25 75 L35 50 L15 35 L40 35 Z"
+              fill="#f59e0b"
+              stroke="#d97706"
+              strokeWidth="2"
+            />
+            <circle cx="45" cy="40" r="3" fill="#7c2d12" className="animate-pulse" />
+            <circle cx="55" cy="40" r="3" fill="#7c2d12" className="animate-pulse" />
+            <circle cx="50" cy="35" r="1.5" fill="#ea580c" opacity="0.6" />
+            <circle cx="45" cy="50" r="1.5" fill="#ea580c" opacity="0.6" />
+            <circle cx="55" cy="50" r="1.5" fill="#ea580c" opacity="0.6" />
+          </svg>
+        </motion.div>
+
+        {/* Animated Wave SVG - Bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-40 overflow-hidden opacity-50 pointer-events-none">
           <svg
             viewBox="0 0 1200 120"
@@ -179,7 +214,7 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* Headshot with optimized effects */}
+          {/* Headshot */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -187,10 +222,8 @@ export default function HomePage() {
             className="relative"
           >
             <div className="relative">
-              {/* Simplified decorative elements */}
               <div className="absolute -inset-4 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full blur-2xl opacity-20 animate-pulse-subtle"></div>
               
-              {/* Image container with Next.js Image optimization */}
               <div className="relative rounded-full overflow-hidden shadow-2xl border-8 border-white dark:border-neutral-900 aspect-square">
                 <Image
                   src={PROFILE.headshot}
@@ -202,7 +235,6 @@ export default function HomePage() {
                 />
               </div>
 
-              {/* Decorative dots - static for performance */}
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500 rounded-full opacity-15 blur-xl"></div>
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-cyan-500 rounded-full opacity-15 blur-xl"></div>
             </div>
@@ -280,50 +312,6 @@ export default function HomePage() {
               />
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CREATIVE WORK SECTION - Easter Egg */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl font-bold mb-3 text-neutral-900 dark:text-neutral-100">
-            Beyond Research
-          </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
-            When not exploring water justice and climate adaptation, Pooja expresses her creativity through mixed-media art
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { src: "/images/art-starfish-detail.jpg", alt: "Starfish sculpture with shells" },
-            { src: "/images/art-starfish.jpg", alt: "Coral starfish sculpture" },
-            { src: "/images/art-cloud.jpg", alt: "Whimsical cloud with stars" },
-            { src: "/images/art-face.jpg", alt: "Abstract colorful face" }
-          ].map((artwork, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="relative aspect-square rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow group"
-            >
-              <Image
-                src={artwork.src}
-                alt={artwork.alt}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-            </motion.div>
-          ))}
         </div>
       </section>
 

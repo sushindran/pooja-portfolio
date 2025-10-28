@@ -11,6 +11,7 @@ type Publication = {
   journal?: string;
   year?: string;
   image?: string;
+  gradient?: string;
   link?: string;
   description?: string;
   type?: "publication" | "presentation";
@@ -22,16 +23,17 @@ const PUBLICATIONS: Publication[] = [
     authors: "Bhullar, H. & Kini, P.",
     journal: "GeoProgress Journal",
     year: "2025",
-    image: "/images/pub-just-transitions.jpg", // Replace with your actual image name
+    gradient: "from-emerald-100 via-teal-100 to-cyan-100 dark:from-emerald-900 dark:via-teal-900 dark:to-cyan-900",
     type: "publication",
     description: "Research on Just Transition in the brick kiln sector in North India, examining labor conditions and environmental impacts.",
+    link: "https://www.geoprogress-edition.eu/a-contextual-understanding-of-just-transitions-in-uttar-pradeshs-brick-industry/",
   },
   {
     title: "Intersectional gendered experiences of water infrastructure: A case study of Lakshman Basti",
     authors: "Kini, P.",
     journal: "UNESCO WWAP",
     year: "2026",
-    image: "/images/project-water.jpeg", // Replace with your actual image name
+    image: "/images/project-water.jpeg",
     type: "publication",
     description: "Forthcoming publication examining intersectional experiences of water access in informal settlements.",
   },
@@ -39,7 +41,7 @@ const PUBLICATIONS: Publication[] = [
     title: "Tanker, Taps, and Tanks: Case Study of Lakshman Basti",
     journal: "UNESCO WWAP Workshop",
     year: "2025",
-    image: "/images/unesco-workshop.jpeg", // Replace with your actual image name
+    image: "/images/unesco-workshop.jpeg",
     type: "presentation",
     description: "Presented arguments on the reproduction of intersectionality based on religion, caste, class, and migration status in the lives of women in informal settlements in urban India. Stressed the importance of access to water infrastructure in relation to climate change.",
     link: "https://www.unesco.org/en/wwap"
@@ -48,7 +50,7 @@ const PUBLICATIONS: Publication[] = [
     title: "Best Presentation Award for PhD Research",
     journal: "BFWG Presentation Day",
     year: "2024",
-    image: "/images/bfwg-award.jpeg", // Replace with your actual image name
+    image: "/images/bfwg-award.jpeg",
     type: "presentation",
     description: "Won the Best Presentation Award for PhD research work at the British Federation of Women Graduates Presentation Day.",
     link: "https://bfwg.org.uk/bfwg2/research-presentation-day/",
@@ -57,7 +59,7 @@ const PUBLICATIONS: Publication[] = [
     title: "Water Practices in Urban India using a Feminist Political Ecology Approach",
     journal: "RGS-IBG Annual Conference",
     year: "2023",
-    image: "/images/rgs-presentation.jpeg", // Replace with your actual image name
+    image: "/images/rgs-presentation.jpeg",
     type: "presentation",
     description: "Presented research on water practices in urban India through a feminist political ecology lens at the Royal Geographical Society conference in London.",
   },
@@ -65,7 +67,7 @@ const PUBLICATIONS: Publication[] = [
     title: "Intersectional and Intergenerational Water Practices in Urban India",
     journal: "POLLEN Conference",
     year: "2023",
-    image: "/images/pres-pollen-durban.jpg", // Replace with your actual image name
+    gradient: "from-violet-100 via-purple-100 to-fuchsia-100 dark:from-violet-900 dark:via-purple-900 dark:to-fuchsia-900",
     type: "presentation",
     description: "Conference presentation in Durban, South Africa, exploring intergenerational dimensions of water access and practices.",
   },
@@ -73,7 +75,7 @@ const PUBLICATIONS: Publication[] = [
     title: "Exploring Mother-Daughter Relationships in Jharkhand",
     journal: "International Population Conference",
     year: "2021",
-    image: "/images/pres-population-conf.jpg", // Replace with your actual image name
+    gradient: "from-sky-100 via-blue-100 to-indigo-100 dark:from-sky-900 dark:via-blue-900 dark:to-indigo-900",
     type: "presentation",
     description: "Presented research on intergenerational relationships and their impact on development outcomes in Jharkhand, India.",
   }
@@ -145,7 +147,7 @@ export default function PublicationsPage() {
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-cyan-100 to-blue-200 dark:from-blue-900 dark:via-cyan-900 dark:to-blue-800" />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${pub.gradient}`} />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
@@ -176,9 +178,9 @@ export default function PublicationsPage() {
                       href={pub.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 mt-4 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors text-sm"
                     >
-                      View Publication <ExternalLink className="w-4 h-4" />
+                      Learn More <ExternalLink className="w-3 h-3" />
                     </Link>
                   )}
                 </div>
@@ -227,7 +229,7 @@ export default function PublicationsPage() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
-                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-100 via-blue-100 to-cyan-200 dark:from-cyan-900 dark:via-blue-900 dark:to-cyan-800" />
+                    <div className={`absolute inset-0 bg-gradient-to-br ${pres.gradient}`} />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
