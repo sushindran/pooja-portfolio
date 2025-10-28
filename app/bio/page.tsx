@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PROFILE = {
-  name: "Pooja Kamalaksha Kini",
+  name: "Pooja K Kini",
   headshot: "/images/headshot-profile.jpg",
   resume: "/documents/Pooja-Kini-Resume.pdf",
   bio: `Pooja Kini is a PhD candidate at Birkbeck, University of London (2022–2026), specialising in Geography, Environment, and Development Studies. Her research is funded by the Mark James studentship and focuses on the intersectional and intergenerational gendered experiences of water stress in urban India. 
@@ -224,10 +224,10 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
       className={`flex gap-8 items-start ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
     >
       {/* Content Card */}
-      <div className={`flex-1 ${isLeft ? 'text-right' : 'text-left'}`}>
+      <div className={`flex-1 ${isLeft ? 'text-left' : 'text-right'}`}>
         <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 shadow-lg border border-neutral-200 dark:border-neutral-700 hover:shadow-xl transition-shadow">
           <div className="flex items-start justify-between gap-4 mb-3">
-            <div className={isLeft ? 'text-right' : 'text-left'}>
+            <div className={isLeft ? 'text-left' : 'text-right'}>
               <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
                 {item.title || item.degree}
               </h3>
@@ -401,7 +401,10 @@ export default function ProfilePage() {
             <h2 className="text-4xl font-bold mb-4 text-neutral-900 dark:text-neutral-100">
               Work Experience
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mx-auto"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mx-auto mb-4"></div>
+            <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
+              Interdisciplinary researcher with 10 years&apos; experience across India and the UK in applied research, evaluation, and knowledge management.
+            </p>
           </motion.div>
 
           {/* Timeline Line */}
