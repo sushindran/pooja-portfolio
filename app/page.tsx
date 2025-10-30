@@ -315,6 +315,111 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ADD THIS SECTION TO YOUR HOME PAGE - RIGHT BEFORE THE FOOTER */}
+
+      {/* CONTACT FORM SECTION */}
+      <section id="contact" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950 dark:via-cyan-950 dark:to-blue-900 py-24">
+        <div className="absolute top-10 right-20 w-48 h-48 bg-blue-200/20 dark:bg-blue-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-20 w-64 h-64 bg-cyan-200/20 dark:bg-cyan-400/10 rounded-full blur-3xl"></div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 dark:from-blue-400 dark:to-cyan-400 bg-clip-text text-transparent mb-4">
+              Let&apos;s Connect
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full mx-auto mb-6"></div>
+            <p className="text-lg text-neutral-700 dark:text-neutral-300 max-w-2xl mx-auto">
+              Have a question or want to collaborate? I&apos;d love to hear from you. Drop me a message!
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-white dark:bg-neutral-900 rounded-3xl shadow-2xl p-8 md:p-12 border border-neutral-200 dark:border-neutral-800"
+          >
+            <form 
+              action="https://docs.google.com/forms/d/e/1FAIpQLSd_k3cBlVW4PqNMcpD-BAJcUwSlDautaHVmwYkca9ghKo6SHA/formResponse" 
+              method="POST" 
+              target="hidden_iframe"
+              onSubmit={() => {
+                setTimeout(() => {
+                  alert('Thank you! Your message has been sent. I\'ll get back to you soon!');
+                  (document.getElementById('contact-form') as HTMLFormElement)?.reset();
+                }, 500);
+              }}
+              id="contact-form"
+              className="space-y-6"
+            >
+              <div>
+                <label htmlFor="name" className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+                  Name *
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="entry.893244811"
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="entry.1911860327"
+                  required
+                  className="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                  placeholder="your.email@example.com"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-semibold text-neutral-700 dark:text-neutral-300 mb-2">
+                  Message *
+                </label>
+                <textarea
+                  id="message"
+                  name="entry.2080684950"
+                  required
+                  rows={6}
+                  className="w-full px-4 py-3 rounded-xl border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none"
+                  placeholder="Your message..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl"
+              >
+                <Mail className="w-5 h-5" /> Send Message
+              </button>
+            </form>
+
+            {/* Hidden iframe to prevent page redirect */}
+            <iframe 
+              name="hidden_iframe" 
+              id="hidden_iframe" 
+              style={{ display: 'none' }}
+              onLoad={() => console.log('Form submitted')}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* FOOTER */}
       <footer className="bg-neutral-100 dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800 py-8">
         <div className="max-w-6xl mx-auto px-6 text-center text-sm text-neutral-600 dark:text-neutral-400">
