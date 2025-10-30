@@ -443,7 +443,7 @@ export default function ProfilePage() {
           </motion.div>
 
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-cyan-600 transform -translate-x-1/2"></div>
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-cyan-600 transform -translate-x-1/2"></div>
             
             <div className="space-y-12">
               {EDUCATION.map((edu, index) => (
