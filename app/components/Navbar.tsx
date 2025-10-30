@@ -43,7 +43,7 @@ export default function Navbar() {
               Publications
             </Link>
             <button
-              onClick={scrollToContact}
+              onClick={() => { window.location.href = '/#contact'; }}
               className="inline-flex items-center gap-2 rounded-full px-5 py-2 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
             >
               Say Hello 👋
@@ -97,7 +97,7 @@ export default function Navbar() {
                   Publications
                 </Link>
                 <button
-                  onClick={scrollToContact}
+                  onClick={() => { setIsMenuOpen(false); window.location.href = '/#contact'; }}
                   className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
                 >
                   Say Hello 👋
