@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PROFILE = {
-  name: "Pooja K Kini",
+  name: "Pooja Kamalaksha Kini",
   headshot: "/images/headshot-profile.jpg",
   resume: "/documents/Pooja-Kini-Resume.pdf",
   bio: `Pooja Kini is a PhD candidate at Birkbeck, University of London (2022–2026), specialising in Geography, Environment, and Development Studies. Her research is funded by the Mark James studentship and focuses on the intersectional and intergenerational gendered experiences of water stress in urban India. 
@@ -221,33 +221,38 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
       whileInView={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       viewport={{ once: true, margin: "-50px" }}
-      className={`flex gap-8 items-start ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+      className={`flex gap-4 md:gap-8 items-start`}
     >
-      {/* Content Card */}
-      <div className={`flex-1 ${isLeft ? 'text-left' : 'text-right'}`}>
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl p-6 shadow-lg border border-neutral-200 dark:border-neutral-700 hover:shadow-xl transition-shadow">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <div className={isLeft ? 'text-left' : 'text-right'}>
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
+      {/* Timeline Dot - Always on left for mobile */}
+      <div className="relative flex flex-col items-center flex-shrink-0 md:order-2">
+        <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-blue-600 border-4 border-white dark:border-neutral-950 shadow-lg z-10"></div>
+      </div>
+
+      {/* Content Card - Always on right for mobile, alternating on desktop */}
+      <div className={`flex-1 md:order-${isLeft ? '1' : '3'}`}>
+        <div className="bg-white dark:bg-neutral-800 rounded-2xl p-4 md:p-6 shadow-lg border border-neutral-200 dark:border-neutral-700 hover:shadow-xl transition-shadow">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 md:gap-4 mb-3">
+            <div className="text-left">
+              <h3 className="text-lg md:text-xl font-bold text-neutral-900 dark:text-neutral-100">
                 {item.title || item.degree}
               </h3>
-              <p className="text-blue-600 dark:text-blue-400 font-semibold">
+              <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm md:text-base">
                 {item.organization || item.institution}
               </p>
               {item.location && (
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                <p className="text-xs md:text-sm text-neutral-500 dark:text-neutral-400">
                   {item.location}
                 </p>
               )}
             </div>
             {item.type && (
-              <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 whitespace-nowrap">
+              <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 whitespace-nowrap w-fit">
                 {item.type}
               </span>
             )}
           </div>
           
-          <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-4">
+          <p className="text-xs md:text-sm font-medium text-neutral-600 dark:text-neutral-400 mb-3 md:mb-4">
             {item.period}
           </p>
 
@@ -255,7 +260,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
             <>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-sm font-semibold mb-3"
+                className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors text-xs md:text-sm font-semibold mb-3"
               >
                 {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                 {isExpanded ? 'Show Less' : 'Show Details'}
@@ -266,7 +271,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="space-y-2 text-neutral-700 dark:text-neutral-300 text-sm"
+                  className="space-y-2 text-neutral-700 dark:text-neutral-300 text-xs md:text-sm"
                 >
                   {item.description.map((point: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
@@ -280,20 +285,15 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
           )}
           
           {item.note && (
-            <p className="text-sm italic text-neutral-600 dark:text-neutral-400 mt-3">
+            <p className="text-xs md:text-sm italic text-neutral-600 dark:text-neutral-400 mt-3">
               {item.note}
             </p>
           )}
         </div>
       </div>
 
-      {/* Timeline Dot */}
-      <div className="relative flex flex-col items-center">
-        <div className="w-6 h-6 rounded-full bg-blue-600 border-4 border-white dark:border-neutral-950 shadow-lg z-10"></div>
-      </div>
-
-      {/* Empty space for alternating layout */}
-      <div className="flex-1"></div>
+      {/* Empty space for desktop alternating layout */}
+      <div className="hidden md:block md:flex-1 md:order-${isLeft ? '3' : '1'}"></div>
     </motion.div>
   );
 };
@@ -409,9 +409,9 @@ export default function ProfilePage() {
 
           {/* Timeline Line */}
           <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-cyan-600 transform -translate-x-1/2"></div>
+            <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-600 to-cyan-600 transform -translate-x-1/2"></div>
             
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {WORK_EXPERIENCE.map((job, index) => (
                 <TimelineItem
                   key={job.id}
