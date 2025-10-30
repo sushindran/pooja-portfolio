@@ -88,7 +88,7 @@ export default function PublicationsPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-neutral-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950 dark:via-cyan-950 dark:to-blue-900 py-20">
+      <section id="publications" className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100 dark:from-blue-950 dark:via-cyan-950 dark:to-blue-900 py-20">
         <div className="absolute top-10 right-20 w-48 h-48 bg-blue-200/20 dark:bg-blue-400/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-20 w-64 h-64 bg-cyan-200/20 dark:bg-cyan-400/10 rounded-full blur-3xl"></div>
 
@@ -191,7 +191,7 @@ export default function PublicationsPage() {
       </section>
 
       {/* Presentations Section */}
-      <section className="bg-neutral-50 dark:bg-neutral-900 py-16">
+      <section id="presentations" className="bg-neutral-50 dark:bg-neutral-900 py-16">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

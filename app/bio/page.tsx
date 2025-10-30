@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Download, Briefcase, GraduationCap, FileText, Award, ChevronDown, ChevronUp, ArrowRight } from "lucide-react";
+import { Download, Briefcase, GraduationCap, FileText, Award, ChevronDown, ChevronUp, ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -135,7 +135,8 @@ const PUBLICATIONS = [
     title: "A contextual understanding of Just Transitions in Uttar Pradesh's brick industry",
     authors: "Bhullar, H. & Kini, P.",
     journal: "GeoProgress Journal",
-    year: "2025"
+    year: "2025",
+    link: "https://www.geoprogress-edition.eu/a-contextual-understanding-of-just-transitions-in-uttar-pradeshs-brick-industry/"
   },
   {
     title: "Intersectional gendered experiences of water infrastructure: A case study of Lakshman Basti",
@@ -545,12 +546,22 @@ export default function ProfilePage() {
                   <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">
                     {pub.journal} ({pub.year})
                   </p>
+                  {pub.link && (
+                    <Link
+                      href={pub.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-3 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors text-sm"
+                    >
+                      Learn More <ExternalLink className="w-3 h-3" />
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </div>
             <div className="text-center">
               <Link
-                href="/publications"
+                href="/publications#publications"
                 className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
               >
                 View All Publications <ArrowRight className="w-4 h-4" />
@@ -588,7 +599,7 @@ export default function ProfilePage() {
             </div>
             <div className="text-center">
               <Link
-                href="/publications"
+                href="/publications#presentations"
                 className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold transition-colors"
               >
                 View All Presentations <ArrowRight className="w-4 h-4" />
