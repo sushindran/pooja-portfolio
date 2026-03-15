@@ -294,7 +294,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
       </div>
 
       {/* Empty space for desktop alternating layout */}
-      <div className="hidden md:block md:flex-1 md:order-${isLeft ? '3' : '1'}"></div>
+      <div className={`hidden md:block md:flex-1 md:order-${isLeft ? '3' : '1'}`}></div>
     </motion.div>
   );
 };
