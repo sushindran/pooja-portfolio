@@ -230,7 +230,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
       </div>
 
       {/* Content Card - Always on right for mobile, alternating on desktop */}
-      <div className={`flex-1 md:order-${isLeft ? '1' : '3'}`}>
+      <div className={`flex-1 ${isLeft ? 'md:order-1' : 'md:order-3'}`}>
         <div className="bg-white dark:bg-neutral-800 rounded-2xl p-4 md:p-6 shadow-lg border border-neutral-200 dark:border-neutral-700 hover:shadow-xl transition-shadow">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 md:gap-4 mb-3">
             <div className="text-left">
@@ -294,7 +294,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({ item, index, isLeft }) => {
       </div>
 
       {/* Empty space for desktop alternating layout */}
-      <div className={`hidden md:block md:flex-1 md:order-${isLeft ? '3' : '1'}`}></div>
+      <div className={`hidden md:block md:flex-1 ${isLeft ? 'md:order-3' : 'md:order-1'}`}></div>
     </motion.div>
   );
 };
